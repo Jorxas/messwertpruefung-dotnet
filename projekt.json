@@ -1,0 +1,17 @@
+{
+  "id": "P05",
+  "status": "initialisiert",
+  "businessImplemented": false,
+  "fixture": "beispieldaten/messwerte.csv",
+  "format": "csv",
+  "expectedRecords": 5,
+  "starter": "src/Program.cs",
+  "command": "dotnet run --project src/Messungen.csproj",
+  "implementationTickets": [
+    "P05-T01",
+    "P05-T02",
+    "P05-T03",
+    "P05-T04"
+  ],
+  "language": "de"
+}
