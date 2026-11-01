@@ -1,6 +1,6 @@
 {
   "id": "P05",
-  "status": "initialisiert",
+  "status": "P05-T01 abgeschlossen; Fachfunktionen offen",
   "businessImplemented": false,
   "fixture": "beispieldaten/messwerte.csv",
   "format": "csv",
@@ -13,5 +13,11 @@
     "P05-T03",
     "P05-T04"
   ],
-  "language": "de"
+  "language": "de",
+  "toleranzregel": {
+    "untergrenze": "9.5",
+    "obergrenze": "10.5",
+    "einheit": "mm",
+    "grenzenEingeschlossen": true
+  }
 }
