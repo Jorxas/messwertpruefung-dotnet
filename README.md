@@ -1,6 +1,6 @@
 # Messwerte mit C# prüfen
 
-Stand: 1. November 2026 — **P05-T01 abgeschlossen; Fachfunktionen noch umzusetzen**. Geplanter Abschluss der Basis: 2026-11-05, spätestens 8. November 2026. Geschätzter Basisaufwand: 4 Stunden ohne Einrichtung und Erweiterungen.
+Stand: 3. November 2026 — **P05-T02 abgeschlossen; CSV-Leser und C#-Prüfung lokal ausgeführt**. WPF und Gesamtabnahme bleiben offen. Geplanter Abschluss der Basis: 2026-11-05, spätestens 8. November 2026. Geschätzter Basisaufwand: 4 Stunden ohne Einrichtung und Erweiterungen.
 
 Ein Techniker möchte Messwerte importieren und Abweichungen von einer Toleranz erkennen.
 
@@ -27,4 +27,10 @@ Dokumentation, selbst gewählte Bezeichner, Kommentare, Meldungen und Beispielda
 
 Toleranzbereich 9,5 bis 10,5 mm einschließlich beider Grenzen, CSV-Format und fünf erwartete Grenzfälle sind im [Ticket](tickets/P05-T01.md) festgelegt. Der lokale Python-Dateicheck wurde mit Python 3.12.14 ausgeführt: fünf unveränderte synthetische Datensätze, vier numerische Werte und der erwartete Eingabefehler M05 in Zeile 6. [Prüfprotokoll](nachweise/P05-T01_pruefprotokoll.md).
 
-Dies ist eine studentische Übung. C#-Toleranzbibliothek, WPF und Lastenheft-Abnahme bleiben offen; die Grenzfallergebnisse sind bislang Sollwerte. Abschluss der Phase und spätere Veröffentlichung durch den Steuerdienst werden getrennt dokumentiert.
+## Geprüfter Stand P05-T02
+
+`src/CsvLeser.cs` prüft das CSV-Format und liefert je physischer Zeile einen Messwert oder einen sichtbaren Eingabefehler. `src/Toleranz.cs` prüft unabhängig vom Dateilesen die inklusive Toleranz mit `decimal`; die Konsole verbindet beide Teile mit der Regel aus `projekt.json`.
+
+Tatsächlich mit .NET SDK 10.0.102 unter Windows ausgeführt: 26 lokale Prüfungen bestanden. M01–M03 liegen innerhalb, M04 außerhalb der Toleranz; M05 bleibt Eingabefehler in Zeile 6. Die fünf ursprünglichen synthetischen Datensätze sind unverändert. Befehle und Exitcodes stehen in [START.md](START.md), Ergebnisse im [Prüfprotokoll](nachweise/P05-T02_pruefprotokoll.md).
+
+Dies ist eine studentische Übung, keine industrielle oder medizinische Zertifizierung. Der geprüfte C#-Kern ist noch keine WPF-Anwendung; Lastenheft A1–A4 bleiben für die übergreifende Abnahme offen. Abschluss der Phase und spätere Veröffentlichung durch den Steuerdienst werden getrennt dokumentiert.

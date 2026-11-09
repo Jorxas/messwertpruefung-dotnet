@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)ausgabe/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)ausgabe/bin/$(MSBuildProjectName)/</BaseOutputPath>
+    <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+</Project>
