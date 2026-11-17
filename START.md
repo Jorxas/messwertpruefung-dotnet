@@ -38,11 +38,40 @@ Grenzen: vereinbartes dreispaltiges CSV mit einer physischen Zeile je Datensatz,
 
 Die gesamte kleine Abnahme einschließlich drei Konsolenfällen und `git diff --check -- .` lässt sich in der vorhandenen Windows PowerShell mit `& ./nachweise/P05-T02_pruefen.ps1` wiederholen. PowerShell 7 (`pwsh`) ist nicht installiert und wird nicht benötigt. Das Skript und das Abnahmeprojekt müssen zusammen mit den Quelldateien im gesicherten Stand enthalten sein; `nachweise/` ist standardmäßig von Git ausgeschlossen.
 
-WPF wird in dieser Phase weder erstellt noch als praktisch geprüft behauptet. P05-T03 und die spätere Gesamtabnahme bleiben offen.
+Für P05-T02 wurde WPF weder erstellt noch geprüft. Der spätere Stand P05-T03 steht im folgenden Abschnitt; die Gesamtabnahme bleibt offen.
+
+## WPF-Ansicht P05-T03
+
+Voraussetzungen: Windows, vorhandenes .NET SDK 10.0.102 und Microsoft.WindowsDesktop.App 10.0.10. Keine zusätzlichen Pakete oder Downloads. Aus dem Projektordner mit den oben genannten .NET-Umgebungsvariablen starten:
+
+~~~powershell
+dotnet run --project oberflaeche/Messansicht.csproj
+~~~
+
+„CSV-Datei auswählen …“ öffnet den nativen Dateidialog. `beispieldaten/messwerte.csv` auswählen. Erwartet: Dateipfad, fünf Tabellenzeilen; M01 bis M03 innerhalb, M04 außerhalb, M05 als Eingabefehler in physischer Zeile 6 mit Korrekturhinweis. Zahlen werden mit deutschem Dezimalkomma angezeigt; die CSV erwartet weiterhin einen Dezimalpunkt. Fehlerhafte Zeilen erhalten „—“ in den nicht verfügbaren Messfeldern. Abbrechen soll den bisherigen Stand behalten.
+
+Konfiguration und unveränderte Beispieldatei werden beim Bauen in den Ausgabeordner kopiert. Die Oberfläche liest `projekt.json` relativ zur ausführbaren Datei, unabhängig vom aktuellen Arbeitsverzeichnis. Toleranzregel im Projekt ändern und erneut bauen, um sie zu übernehmen.
+
+Kleinste automatisierte Prüfung in der vorhandenen Windows PowerShell:
+
+~~~powershell
+& ./nachweise/P05-T03_pruefen.ps1
+~~~
+
+Das Skript führt `dotnet run --project nachweise/P05-T03_abnahme.csproj` und `git diff --check -- .` aus. Tatsächlich bestanden: 14 Prüfungen an einem echten angezeigten WPF-Fenster, Exitcode 0. Die Abnahme lädt die Datei über dieselbe Fenstermethode wie der Dateidialog und prüft auch eine fehlende Datei sowie erneutes Laden. Sie rendert zwei PNGs direkt aus WPF. Diese Prüfung bedient den nativen Dateidialog nicht.
+
+**Bediennachweis vom 17. November:** Nach ausdrücklicher Benutzerfreigabe wurden CSV-Auswahl und Abbrechen tatsächlich geprüft. Die gewählte Kopie der Beispieldatei im Bauausgabeordner ist bytegleich mit dem Original. Fünf Ergebnisse erschienen und blieben beim erneuten Öffnen und Abbrechen erhalten. [Beobachtung und Zeitpunkt](nachweise/P05-T03-bedienung-2026-11-17.json). Die früheren Werkzeugfehler bleiben als Verlauf unten dokumentiert. Keine Gesamtabnahme oder Folgephase hier erledigt. Vollständige Quellenliste zur Wiederholung: `nachweise/P05-T03_dateiliste.txt`; `nachweise/` muss trotz Git-Ausschluss vom Steuerdienst ausdrücklich gesichert werden.
 
 ## Technische Quellen
 
 - [Python-CSV-Modul](https://docs.python.org/3/library/csv.html)
 - [WPF mit .NET](https://learn.microsoft.com/de-de/dotnet/desktop/wpf/get-started/create-app-visual-studio)
+- [Native WPF-Systemdialoge](https://learn.microsoft.com/de-de/dotnet/desktop/wpf/windows/how-to-open-common-system-dialog-box)
 
 Vor dem Einbinden eines Frameworks dessen aktuelle offizielle Anleitung lesen.
+
+Die beiden WPF-Anleitungen wurden für P05-T03 am 10. November 2026 gelesen; verwendet werden `UseWPF`, XAML und `Microsoft.Win32.OpenFileDialog.ShowDialog`.
+
+## 10. November: Bedienfreigabe erhalten, Werkzeugstart fehlgeschlagen
+
+Der Benutzer hat das Öffnen, die lokale CSV-Auswahl und die Abbruchvalidierung in Messansicht ausdrücklich freigegeben. Diese Erlaubnis bleibt für dieselben Tests bestehen; nicht erneut erfragen. Der frühere Freigabefehler ist historisch. Beim jetzigen Versuch scheitern jedoch sowohl die reguläre Computer-Use-Initialisierung nach Kernelreset als auch die alternative verfügbare Oberfläche vor der Appbedienung: `failed to write kernel assets` / `os error 3` (Pfad nicht gefunden). Kein Dateidialog wurde bedient. Der Endpunkt bleibt blockiert, jetzt wegen der nicht startenden Werkzeuglaufzeit. Keine Freigabe umgangen, keine Ersatzautomation, keine behauptete Abnahme und keine Folgephase. [Tatsächlicher Versuch und bestehende Freigabe](nachweise/P05-T03-bedienfreigabe-2026-11-10.json).

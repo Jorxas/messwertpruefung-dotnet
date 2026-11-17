@@ -1,6 +1,6 @@
 {
   "id": "P05",
-  "status": "P05-T02 abgeschlossen; CSV-Leser und C#-Prüfung lokal ausgeführt; WPF und Gesamtabnahme offen",
+  "status": "P05-T03 geprüft: 14 frühere WPF-Prüfungen und native Dateiauswahl einschließlich Abbrechen vom 17. November; Gesamtabnahme T04 offen",
   "businessImplemented": false,
   "fixture": "beispieldaten/messwerte.csv",
   "format": "csv",
