@@ -1,0 +1,31 @@
+{
+  "zeit": "2026-11-10T12:46:56.500Z",
+  "projekt": "P05",
+  "ticket": "P05-T03",
+  "benutzerFreigabe": {
+    "vorhanden": true,
+    "antwortOriginal": "oui et mm pour la validation",
+    "umfang": "Lokale Messansicht öffnen und bedienen; ursprünglichen CSV-Beispielfall auswählen und Dateidialog abbrechen. Diese Freigabe bei Wiederaufnahme nicht erneut erfragen."
+  },
+  "versuche": [
+    {
+      "werkzeug": "node_repl mit @oai/sky",
+      "ergebnis": "Initialisierung fehlgeschlagen, nach Kernelreset identisch.",
+      "fehler": "failed to write kernel assets: Le chemin d’accès spécifié est introuvable. (os error 3)"
+    },
+    {
+      "werkzeug": "cua_repl.getApp mit bestätigtem Projekt-EXE-Pfad",
+      "ergebnis": "Initialisierung fehlgeschlagen, keine Appbedienung erfolgt.",
+      "fehler": "failed to write kernel assets: Le chemin d’accès spécifié est introuvable. (os error 3)"
+    }
+  ],
+  "dateidialogGeprueft": false,
+  "abnahme": "weiterhin offen",
+  "blockade": "Computer-Use-Laufzeit startet nicht; die Benutzerfreigabe liegt jetzt vor.",
+  "originaldaten": {
+    "beispieldaten/messwerte.csv": {
+      "sha256": "491dc3508750cfadf546dc427563d995420778b8ce1b72b9ee8316730b72e644"
+    }
+  },
+  "naechsterSchritt": "Nach Wiederherstellung des Computer-Use-Werkzeugs die bereits erlaubten Auswahl- und Abbruchtests tatsächlich ausführen. Keine neue Freigabe derselben Testhandlung erforderlich; keine Folgephase vor vollständiger Abnahme."
+}

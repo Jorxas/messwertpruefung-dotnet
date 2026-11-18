@@ -1,0 +1,30 @@
+{
+  "projekt": "P05",
+  "ticket": "P05-T03",
+  "zeit": "2026-11-17T17:08:09.128Z",
+  "werkzeug": "Computer Use / sky",
+  "auswahl": {
+    "methode": "Doppelklick auf messwerte.csv im nativen Dateidialog",
+    "ergebnis": "Fünf echte Tabellenzeilen: M01–M03 innerhalb, M04 außerhalb; Eingabefehler M05 in Zeile 6.",
+    "datei": "ausgabe/bin/Messansicht/Debug/net10.0-windows/beispieldaten/messwerte.csv"
+  },
+  "abbruch": {
+    "dialogErneutGeoeffnet": true,
+    "schaltflaeche": "Abbrechen",
+    "dialogGeschlossen": true,
+    "anzahlZeilen": 5,
+    "ergebnisseUnveraendert": true
+  },
+  "zweiterBildschirm": {
+    "ursprungX": 2975,
+    "ursprungY": 186
+  },
+  "beobachteteZeilen": [
+    "Ergebniszeile { Zeile = 2, Kennung = M01, Wert = 9,5, Einheit = mm, Ergebnis = Innerhalb der Toleranz }",
+    "Ergebniszeile { Zeile = 3, Kennung = M02, Wert = 10,0, Einheit = mm, Ergebnis = Innerhalb der Toleranz }",
+    "Ergebniszeile { Zeile = 4, Kennung = M03, Wert = 10,5, Einheit = mm, Ergebnis = Innerhalb der Toleranz }",
+    "Ergebniszeile { Zeile = 5, Kennung = M04, Wert = 10,6, Einheit = mm, Ergebnis = Außerhalb der Toleranz }",
+    "Ergebniszeile { Zeile = 6, Kennung = —, Wert = —, Einheit = —, Ergebnis = Eingabefehler in Zeile 6: M05: Wert 'ungueltig' ist keine exakt darstellbare Dezimalzahl im vereinbarten Format. }"
+  ],
+  "grenze": "Einzelabnahme T03. Keine T04-Gesamtabnahme und keine rückdatierte Schlussprüfung."
+}

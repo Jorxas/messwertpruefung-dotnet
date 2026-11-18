@@ -1,0 +1,18 @@
+{
+  "datum": "2026-11-09T20:51:58.588Z",
+  "ticket": "P05-T02",
+  "urspruenglicherSnapshot": "77a5b92babd7be2da9e902bdcc2d3449075b5daa19398554ebee1b7bd7b9fb60",
+  "grund": "Vorhandene, bereits am 3. November gehashte Abnahmequellen fehlten im Veröffentlichungsstand. Unveränderte Dateien ergänzt.",
+  "ergaenzteDateien": {
+    "nachweise/P05-T02_abnahme.cs": "4da19bd813182df91afe9031d4de0e280defb751ac60d935c714ac461629f0a2",
+    "nachweise/P05-T02_abnahme.csproj": "ab676441cdc47db71c2e6dc0c894a570f0f482b7b68cfd8b0af1aaeb9aad4210",
+    "nachweise/P05-T02_dotnet-umgebung.txt": "0814296a16fff8eca0dd7d35f863de366624c2b3e3d708efd2789fe1713fcece",
+    "nachweise/P05-T02_pruefen.ps1": "061de32a17c6e7f094ebae99360170cb58f4803ace039f3bb778903b744155e9"
+  },
+  "nachpruefung": {
+    "datum": "2026-11-09T20:51:58.588Z",
+    "befehl": "dotnet run --project nachweise/P05-T02_abnahme.csproj",
+    "exitcode": 0,
+    "ergebnis": "26 Prüfungen bestanden; ursprüngliche fünf Datensätze unverändert."
+  }
+}
