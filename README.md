@@ -1,42 +1,46 @@
-# Messwerte mit C# prüfen
+# Messwerte mit C# und WPF prüfen
 
-Stand: 10. November 2026 — **P05-T03 implementiert, vollständige Bedienabnahme blockiert**. 14 Prüfungen am echten WPF-Fenster bestanden; die interaktive Dateiauswahl ist wegen verweigerter Computer-Use-Freigabe ungeprüft. P05-T04 und Gesamtabnahme bleiben offen. Ursprünglicher Basiszieltermin: 2026-11-05, spätestens 8. November 2026; Fortsetzung gemäß übergeordnetem Plan vom 9. November. Geschätzter Basisaufwand: 4 Stunden ohne Einrichtung und Erweiterungen.
+Messwerte aus einer CSV-Datei sollen gegen einen Toleranzvertrag geprüft und mit verständlichen Fehlerhinweisen in einer Windows-Oberfläche angezeigt werden.
 
-Ein Techniker möchte Messwerte importieren und Abweichungen von einer Toleranz erkennen.
+![Projektaufbau](dokumentation/ueberblick.svg)
 
-Ergebnis: C#-Prüfbibliothek und eine WPF-Tabelle mit Messwerten und Prüfergebnis.
+**Veröffentlichungsstand: Phase 3/4.** Dieses eigenständige Repository übernimmt zunächst den bereits lokal committeten Stand. Weitere fachliche Phasen werden im Abstand von mindestens vier Stunden veröffentlicht. Die technische Entwicklung und die öffentliche Veröffentlichung haben unterschiedliche echte Zeitpunkte.
 
-Vorgesehene Technologien: C#/.NET, WPF, Tests/QA, UX/UI. Eine Nennung ist kein Nachweis einer Umsetzung.
+## Was hier zu sehen ist
 
-## Einstieg
+| Schritt | Inhalt | Hier veröffentlicht |
+|---|---|---|
+| 1 | Messformat und Grenzfälle | Ja |
+| 2 | C#-Prüfbibliothek | Ja |
+| 3 | WPF-Tabelle und Dateiauswahl | Ja |
+| 4 | Native Bedienung und abschließende Fehlerfälle | Folgt |
 
-1. [Lastenheft](LASTENHEFT.md) lesen.
-2. [Erstes Ticket](tickets/P05-T01.md) öffnen.
-3. [Technischen Einstieg](START.md) prüfen und ein Ticket nach dem anderen bearbeiten.
-4. [Arbeitsjournal](ARBEITSJOURNAL.md) und echte Nachweise aktualisieren.
+## Fachlicher Nutzen
 
-Abhängigkeiten: keine weiteren Projekte.
+Trennung von Fachlogik und Oberfläche, CSV-Validierung und native Windows-Bedienung.
 
-[Erweiterungen](VARIANTEN.md) haben einen eigenen Umsetzungsstand. [Private Unternehmenszuordnung](UNTERNEHMEN.lokal.md) bleibt außerhalb der Git-Verwaltung.
+## Lokal starten
 
-## Projektsprache
+Im geklonten Repository ausführen; die benötigte Laufzeit muss installiert sein. Python-Beispiele verwenden 3.12, Node-Beispiele 24 und C# die im Projekt angegebene .NET-Version. Befehle mit uv laden die dort genau bezeichneten Pakete bei Bedarf.
 
-Dokumentation, selbst gewählte Bezeichner, Kommentare, Meldungen und Beispieldaten werden auf Deutsch geschrieben. Festgelegte API-Schlüssel, Sprachsyntax und Produktnamen bleiben unverändert.
+```powershell
+powershell -NoProfile -File nachweise/P05-T03_pruefen.ps1
+```
 
-## Geprüfter Stand P05-T01
+Ausführliche technische Befehle: [START.md](START.md). [Öffentlicher Prüfstand](ABNAHME.json) und [Quellphasen](VERLAUF.json) dokumentieren Herkunft und echte Ausführungsdaten. Eine neue Repositorykopie ist kein neuer nativer Desktoplauf.
 
-Toleranzbereich 9,5 bis 10,5 mm einschließlich beider Grenzen, CSV-Format und fünf erwartete Grenzfälle sind im [Ticket](tickets/P05-T01.md) festgelegt. Der lokale Python-Dateicheck wurde mit Python 3.12.14 ausgeführt: fünf unveränderte synthetische Datensätze, vier numerische Werte und der erwartete Eingabefehler M05 in Zeile 6. [Prüfprotokoll](nachweise/P05-T01_pruefprotokoll.md).
+## Ergebnis des lokal geprüften Schlussstands
 
-## Geprüfter Stand P05-T02
+26 Fachprüfungen und 15 WPF-Prüfungen; native Dateiauswahl und Abbrechen tatsächlich geprüft.
 
-`src/CsvLeser.cs` prüft das CSV-Format und liefert je physischer Zeile einen Messwert oder einen sichtbaren Eingabefehler. `src/Toleranz.cs` prüft unabhängig vom Dateilesen die inklusive Toleranz mit `decimal`; die Konsole verbindet beide Teile mit der Regel aus `projekt.json`.
+**Dieser Schlussstand ist lokal bereits geprüft, aber noch nicht vollständig in diesem Repository veröffentlicht.** Maßgeblich für den hier verfügbaren Code ist die Phasentabelle oben.
 
-Tatsächlich mit .NET SDK 10.0.102 unter Windows ausgeführt: 26 lokale Prüfungen bestanden. M01–M03 liegen innerhalb, M04 außerhalb der Toleranz; M05 bleibt Eingabefehler in Zeile 6. Die fünf ursprünglichen synthetischen Datensätze sind unverändert. Befehle und Exitcodes stehen in [START.md](START.md), Ergebnisse im [Prüfprotokoll](nachweise/P05-T02_pruefprotokoll.md).
+## Grenzen
 
-Dies ist eine studentische Übung, keine industrielle oder medizinische Zertifizierung. Lastenheft A1–A4 bleiben für die übergreifende Abnahme offen. Abschluss der Phase und spätere Veröffentlichung durch den Steuerdienst werden getrennt dokumentiert.
+Windows-Desktopprojekt; keine Web-, Mobil- oder ASP.NET-Anwendung.
 
-## Stand P05-T03
+Eigenes kleines Lernprojekt mit synthetischen Daten, mit KI-Unterstützung entwickelt und geprüft. Keine Aussage über Berufserfahrung, menschliche Arbeitsstunden oder praktische Verwendung weiterer nur geplanter Produkte.
 
-`oberflaeche/Messansicht.csproj` enthält eine echte WPF-Anwendung mit nativem CSV-Dateidialog, Dateianzeige und schreibgeschützter Ergebnistabelle. Die vorhandenen C#-Bausteine liefern vier Messwerte und den Eingabefehler M05 mit Zeilennummer 6. Fehler erhalten kein Toleranzergebnis; nicht verfügbare Felder erscheinen als „—“. Deutsche Korrekturhinweise ergänzen die Ergebnisse. Ein Dateifehler entfernt alte Ergebnisse.
+## Entwicklungshistorie
 
-Die lokale WPF-Abnahme zeigt das echte Fenster und prüft seine Daten und Meldungen: 14 Prüfungen bestanden, einschließlich unveränderter Beispieldatei. Zwei aus WPF gerenderte Bilder wurden visuell kontrolliert. Am 17. November wurde zusätzlich der native Dateidialog tatsächlich bedient: Beispieldatei ausgewählt, fünf Ergebnisse geprüft, Dialog erneut geöffnet und abgebrochen. Datei und Ergebnisse blieben erhalten. Dieser T03-Endpunkt ist geprüft; P05-T04 und die Gesamtabnahme bleiben offen. [Bediennachweis](nachweise/P05-T03-bedienung-2026-11-17.json), [Prüfprotokoll und Wiederholung](nachweise/P05-T03_pruefprotokoll.md), [Startanleitung](START.md).
+[Entwicklungshistorie](HISTORIE.md): die vorhandenen lokalen Änderungen, ihre ursprünglichen Daten und die spätere GitHub-Übernahme.
