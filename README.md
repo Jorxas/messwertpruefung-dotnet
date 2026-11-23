@@ -41,6 +41,14 @@ Windows-Desktopprojekt; keine Web-, Mobil- oder ASP.NET-Anwendung.
 
 Eigenes kleines Lernprojekt mit synthetischen Daten, mit KI-Unterstützung entwickelt und geprüft. Keine Aussage über Berufserfahrung, menschliche Arbeitsstunden oder praktische Verwendung weiterer nur geplanter Produkte.
 
+## Demo
+
+Live-Demo: <https://jorxas.github.io/messwertpruefung-dotnet/> (Deutsch, mit Umschalter auf Französisch).
+
+Die Seite zeigt einen Anwendungsfall: eine Messreihe mit Sollmaß 10 mm und Toleranz ±0,5 mm wird von der echten C#-Konsolenanwendung geprüft. Gezeigt werden fünf Eingabedateien samt Ausgabe des Programms, zwei Fensterbilder der WPF-Oberfläche und ein Feld zum Prüfen eines einzelnen Werts. Die Ausgaben sind aufgezeichnete Läufe des Projekts. Nur das Einzelwert-Feld rechnet im Browser (JavaScript-Port in `demo/port.js`); er wird beim Erzeugen gegen 200 Zeilen eines echten C#-Laufs verglichen.
+
+Neu erzeugen (Windows, .NET SDK 10): `node demo/erzeugen.cjs`. Browserprüfung: `node tools/browser-pruefen.cjs` (benötigt puppeteer-core und Chrome oder Edge).
+
 ## Entwicklungshistorie
 
 [Entwicklungshistorie](HISTORIE.md): die vorhandenen lokalen Änderungen, ihre ursprünglichen Daten und die spätere GitHub-Übernahme.

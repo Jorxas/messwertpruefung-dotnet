@@ -1,0 +1,10 @@
+messung_id,wert,einheit
+F01,10.2,mm
+F02,10.2,cm
+F03,10.2
+F01,10.0,mm
+,10.0,mm
+F04,1e1,mm
+F05,"10,0",mm
+
+F06,10.3,mm
