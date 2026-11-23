@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Messwerte prüfen · Demo</title>
+<meta name="description" content="Demo zum Lernprojekt messwertpruefung-dotnet: Messwerte aus einer CSV-Datei gegen eine Toleranz prüfen, mit Ausgaben echter Läufe.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b6bcb%27/%3E%3Cpath d=%27M8 17l5 5 11-12%27 stroke=%27white%27 stroke-width=%273.5%27 fill=%27none%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt" data-i18n="sprung">Zum Inhalt</a>
+<header class="kopf">
+  <div class="kopf-innen">
+    <span class="marke" data-i18n="marke">Lernprojekt · Demo</span>
+    <div class="sprache" role="group" data-i18n-aria="sprache_gruppe" aria-label="Sprache">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt">
+  <section class="held">
+    <h1 data-i18n="titel">Messwerte prüfen</h1>
+    <p class="lede" data-i18n="lede"></p>
+    <ul class="marken">
+      <li data-i18n="marke_lern">Lernprojekt</li>
+      <li data-i18n="marke_synth">Synthetische Daten</li>
+      <li data-i18n="marke_tech">C# · .NET 10 · WPF</li>
+    </ul>
+    <p class="links">
+      <a href="https://github.com/Jorxas/messwertpruefung-dotnet" data-i18n="link_code">Quellcode auf GitHub</a>
+      <a href="https://jorxas.github.io/Portfolio/" data-i18n="link_portfolio">Zum Portfolio</a>
+    </p>
+  </section>
+
+  <noscript><p class="hinweis">Diese Demo benötigt JavaScript. / Cette démo nécessite JavaScript.</p></noscript>
+
+  <section aria-labelledby="h-fall">
+    <h2 id="h-fall" data-i18n="fall_titel">Anwendungsfall: eine Messreihe prüfen</h2>
+    <p data-i18n="fall_text"></p>
+    <div class="reiter" role="tablist" id="reiter" data-i18n-aria="reiter_aria" aria-label="Szenario"></div>
+    <div class="szenario" id="szenario" role="tabpanel" tabindex="-1">
+      <p class="szenario-text" id="szenario-text"></p>
+      <div class="zwei">
+        <div class="karte">
+          <h3 data-i18n="eingabe_titel">Eingabe</h3>
+          <p class="klein" id="eingabe-datei"></p>
+          <ol class="csv" id="csv"></ol>
+        </div>
+        <div class="karte">
+          <h3 data-i18n="ergebnis_titel">Ergebnis des Programms</h3>
+          <p class="echt" data-i18n="echt_label">Ausgabe eines echten Laufs des Projekts</p>
+          <p class="klein" id="lauf-meta"></p>
+          <div class="tabellenrahmen">
+            <table class="ergebnis" id="ergebnis">
+              <thead><tr>
+                <th scope="col" data-i18n="th_zeile">Zeile</th>
+                <th scope="col" data-i18n="th_kennung">Kennung</th>
+                <th scope="col" data-i18n="th_wert">Wert</th>
+                <th scope="col" data-i18n="th_ergebnis">Ergebnis</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <details class="konsole">
+        <summary data-i18n="konsole_titel">Rohe Konsolenausgabe</summary>
+        <p class="klein" data-i18n="konsole_text"></p>
+        <h4 data-i18n="stdout">Standardausgabe</h4>
+        <pre lang="de" id="stdout"></pre>
+        <h4 data-i18n="stderr">Standardfehler</h4>
+        <pre lang="de" id="stderr"></pre>
+        <p class="klein" id="exitcode"></p>
+      </details>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-wert">
+    <h2 id="h-wert" data-i18n="wert_titel">Einen Messwert selbst prüfen</h2>
+    <p data-i18n="wert_text"></p>
+    <form class="pruefform" id="pruefform" autocomplete="off">
+      <label class="feld"><span data-i18n="wert_label">Wert</span>
+        <input id="wert" type="text" inputmode="decimal" value="10.6" spellcheck="false">
+      </label>
+      <label class="feld kurz"><span data-i18n="einheit_label">Einheit</span>
+        <select id="einheit"><option value="mm">mm</option><option value="cm">cm</option></select>
+      </label>
+    </form>
+    <div class="beispiele" id="beispiele" role="group" data-i18n-aria="beispiele_aria" aria-label="Beispiele"></div>
+    <div class="skala" id="skala" aria-hidden="true">
+      <div class="band"></div>
+      <div class="marker" id="marker"></div>
+      <span class="grenze links-g">9,5</span><span class="grenze rechts-g">10,5</span>
+    </div>
+    <p class="urteil" id="urteil" role="status" aria-live="polite"></p>
+    <p class="klein" id="treue"></p>
+  </section>
+
+  <section aria-labelledby="h-wpf">
+    <h2 id="h-wpf" data-i18n="wpf_titel">Die Windows-Oberfläche (WPF)</h2>
+    <p data-i18n="wpf_text"></p>
+    <div class="zwei bilder">
+      <figure>
+        <img src="bilder/wpf-beispieldaten.png" width="1000" height="600" alt="" id="img1">
+        <figcaption data-i18n="wpf_bild1"></figcaption>
+      </figure>
+      <figure>
+        <img src="bilder/wpf-dateifehler.png" width="1000" height="600" alt="" id="img2">
+        <figcaption data-i18n="wpf_bild2"></figcaption>
+      </figure>
+    </div>
+    <p class="klein" id="wpf-meta"></p>
+  </section>
+
+  <section aria-labelledby="h-info">
+    <h2 id="h-info" data-i18n="info_titel">Aufgabe, Daten, Ergebnis, Grenzen</h2>
+    <div class="raster">
+      <article class="karte"><h3 data-i18n="aufgabe_t">Aufgabe</h3><p data-i18n="aufgabe_x"></p></article>
+      <article class="karte"><h3 data-i18n="daten_t">Daten</h3><p data-i18n="daten_x"></p></article>
+      <article class="karte"><h3 data-i18n="ergebnis_t">Ergebnis</h3><p data-i18n="ergebnis_x"></p><p id="ergebnis-zahlen"></p></article>
+      <article class="karte"><h3 data-i18n="grenzen_t">Grenzen</h3><p data-i18n="grenzen_x"></p></article>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <p data-i18n="fuss_ehrlich"></p>
+  <p data-i18n="fuss_neu"></p>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="daten.js"></script>
+<script src="port.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
