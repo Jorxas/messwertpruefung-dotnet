@@ -1,0 +1,9 @@
+{
+  "zeit": "2026-11-17T22:36:25.571Z",
+  "beobachtung": "Echte Messansicht: fünf Zeilen. M01 bis M03 innerhalb, M04 außerhalb; M05 mit Eingabefehler in Zeile 6. Studentische Übung und fehlende Zertifizierung sichtbar.",
+  "zweiterBildschirm": {
+    "x": 2560,
+    "y": 0
+  },
+  "grenze": "Unveränderte echte Desktopaufnahme. Die gesonderten PNGs der automatisierten Tests sind als WPF-Renderbilder gekennzeichnet."
+}

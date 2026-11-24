@@ -1,7 +1,7 @@
 {
   "id": "P05",
-  "status": "P05-T03 geprüft: 14 frühere WPF-Prüfungen und native Dateiauswahl einschließlich Abbrechen vom 17. November; Gesamtabnahme T04 offen",
-  "businessImplemented": false,
+  "status": "Basis und Lastenheft lokal geprüft; 26 Fach- und 15 echte WPF-Prüfungen",
+  "businessImplemented": true,
   "fixture": "beispieldaten/messwerte.csv",
   "format": "csv",
   "expectedRecords": 5,
@@ -19,5 +19,6 @@
     "obergrenze": "10.5",
     "einheit": "mm",
     "grenzenEingeschlossen": true
-  }
+  },
+  "gesamtabnahme": "& ./nachweise/P05-T04_pruefen.ps1"
 }

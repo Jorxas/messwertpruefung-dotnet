@@ -1,0 +1,19 @@
+{
+    "laeufe":  [
+                   {
+                       "code":  0,
+                       "projekt":  "P05-T02_abnahme.csproj"
+                   },
+                   {
+                       "code":  0,
+                       "projekt":  "P05-T04_abnahme.csproj"
+                   }
+               ],
+    "ende":  "2026-11-17T22:36:25.3152680Z",
+    "eingabeSha256":  "491DC3508750CFADF546DC427563D995420778B8CE1B72B9EE8316730B72E644",
+    "beginn":  "2026-11-17T22:36:19.2058058Z",
+    "grenze":  "WPF-Prüffenster ausschließlich auf zweitem Bildschirm. Nativer Dateidialog separat in T03 tatsächlich geprüft; Desktopaufnahme separat in T04.",
+    "fachpruefungen":  26,
+    "ergebnis":  "bestanden",
+    "wpfPruefungen":  15
+}
